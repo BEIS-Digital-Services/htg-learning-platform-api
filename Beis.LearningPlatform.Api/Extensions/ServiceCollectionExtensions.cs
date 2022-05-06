@@ -8,7 +8,7 @@ namespace Beis.LearningPlatform.Api.Extensions
     {
         internal static void RegisterAppServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IDapperContext>(c => new NpgSqlDapperContext(configuration["DatabaseConnectionString"]));
+            services.AddScoped<IDapperContext>(c => new NpgSqlDapperContext(configuration["DatabaseConfig:LearningPlatformDbConnectionString"]));
             services.AddScoped<IDiagnosticToolEmailAnswerRepository, DiagnosticToolEmailAnswerRepository>();
             services.AddScoped<IFeedbackPageUsefulRepository, FeedbackPageUsefulRepository>();
             services.AddScoped<IFeedbackProblemReportRepository, FeedbackProblemReportRepository>();

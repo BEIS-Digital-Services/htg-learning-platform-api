@@ -2,6 +2,12 @@ using Beis.LearningPlatform.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+if (connectionString != null)
+{
+    builder.Configuration.AddAzureAppConfiguration(connectionString);
+}
+
 builder.Services.RegisterAppServices(builder.Configuration);
 builder.Services.AddControllers(
 		config => config.ReturnHttpNotAcceptable = true
